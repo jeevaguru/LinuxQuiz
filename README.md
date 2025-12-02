@@ -22,8 +22,8 @@ A modern, interactive Linux quiz web application built with React and Material U
 ### 1. Download the App
 - Download or clone the repository from GitHub:
 	```
-	git clone https://github.com/yourusername/linux-quiz.git
-	cd linux-quiz
+	git clone https://github.com/yourusername/LinuxQuiz.git
+	cd LinuxQuiz
 	```
 	Or download the ZIP and extract it, then open a terminal in the extracted folder.
 

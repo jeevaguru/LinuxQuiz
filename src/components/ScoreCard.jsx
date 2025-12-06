@@ -29,7 +29,7 @@ const PieChart = ({ correct, wrong }) => {
 };
 
 
-const ScoreCard = ({ name, correct, wrong, total, onRestart }) => (
+const ScoreCard = ({ name, correct, wrong, total, incorrectList = [], onRestart }) => (
   <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #6366f1 0%, #a78bfa 50%, #f472b6 100%)' }}>
     <Container maxWidth="sm">
       <Box sx={{ background: 'linear-gradient(135deg, #fff 0%, #ede9fe 50%, #fce7f3 100%)', borderRadius: 4, boxShadow: 6, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -45,6 +45,31 @@ const ScoreCard = ({ name, correct, wrong, total, onRestart }) => (
           <span style={{ color: '#dc2626', fontWeight: 600 }}>Wrong: {wrong}</span> /{' '}
           <span style={{ color: '#6366f1', fontWeight: 600 }}>Total: {total}</span>
         </Typography>
+        {incorrectList.length > 0 && (
+          <Box sx={{ mt: 3, width: '100%' }}>
+            <Typography variant="h6" color="#dc2626" fontWeight={700} sx={{ mb: 1 }}>
+              Incorrect Questions:
+            </Typography>
+            <Stack spacing={2}>
+              {incorrectList.map((item, idx) => (
+                <Box key={idx} sx={{ p: 2, borderRadius: 2, background: '#fff', boxShadow: 1 }}>
+                  <Typography fontWeight={600} color="#4338ca" sx={{ mb: 0.5 }}>
+                    Q: {item.question}
+                  </Typography>
+                  <Typography fontSize="1rem" color="#7c3aed">
+                    Your answer: <span style={{ color: '#dc2626', fontWeight: 600 }}>{item.userAnswer}</span>
+                  </Typography>
+                  <Typography fontSize="1rem" color="#22c55e">
+                    Correct answer: <span style={{ fontWeight: 600 }}>{item.correctAnswer}</span>
+                  </Typography>
+                  <Typography fontSize="0.95rem" color="#f472b6">
+                    Section: {item.topic}
+                  </Typography>
+                </Box>
+              ))}
+            </Stack>
+          </Box>
+        )}
         <Button
           fullWidth
           variant="contained"

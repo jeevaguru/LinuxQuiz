@@ -64,12 +64,22 @@ function App() {
   if (quizDone) {
     const correct = questions.filter((q, i) => q.answer === answers[i]).length;
     const wrong = questions.length - correct;
+    // Build incorrect questions list
+    const incorrectList = questions
+      .map((q, i) => ({
+        question: q.question,
+        topic: q.topic,
+        userAnswer: answers[i],
+        correctAnswer: q.answer
+      }))
+      .filter(q => q.userAnswer !== q.correctAnswer);
     return (
       <ScoreCard
         name={userName}
         correct={correct}
         wrong={wrong}
         total={questions.length}
+        incorrectList={incorrectList}
         onRestart={restartQuiz}
       />
     );
